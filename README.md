@@ -29,3 +29,7 @@ Configure node in Jenkins and execute the Jar on the Slave Node.
 
 Also Go to Manage Jenkins --> Security --> TCP port for inbound agents
 Either Select Fixed or Random. If it's disabled, agents won't be able to connect.
+
+
+
+Jenkins pipeline to deploy Helm Charts. Please refer to the Jenkinsfile and Readme.jenkins
