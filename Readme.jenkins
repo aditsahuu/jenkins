@@ -1,0 +1,57 @@
+The Jenkinsfile created is used to deploy Helm Charts on the Cluster.
+
+The Jenkins file Stages are:-
+Stage-1:
+Clean Workspace
+The very stage is to clean the Workspace before it checkout the latest code from the repository.
+
+Stage-2:
+Git
+Collects all the branch name, credentials, Git Repo Url.
+
+Stage-3:
+Git checkout
+In this stage it checout the helm Charts from the repository.
+
+Stage-4:
+Deploy Helm Chart
+It deploys the helmchart to the cluster using the Kube config file for authentication.
+
+At last it display the Success or failed message accordingly.
+
+Note:-
+There are some Variables Used which is used when the pipeline starts.
+
+def BRANCH = env.BRANCH_NAME
+like BRANCH it is used to collect the Branch Name.
+
+def TAG = BRANCH.split('-')[1]
+It is used to filter the branch name collect a specific name from it.
+
+Example:- Your branch is env-test then only test will be colected and it will stored in TAG Variable.
+
+def SVC_NAME = "getsvcname"
+define a service name for the helm charts name.
+
+def releaseName = "${SVC_NAME}"
+Define a release name for the Helm Charts.
+
+def CREDENTIALS_ID = "gitcred"
+Git Credentials CREDENTIALS_ID
+
+def GIT_REPO = "giturl"
+Git Repo Url.
+
+How to authenticate Jenkins with Cluster.
+
+Step-1:
+Install kubernetes plugin in Jenkins.
+
+Step-2:
+Go to Manage Jenkins --> Cloud --> new Cloud --> name & Select K8's
+Create Credentials --> Select secret file and upload the kube config file and test connection.
+
+Step-3:
+Go to Jenkins Create a Freestyle or Pipeline Job.
+
+Add the Jenkinsfile and start the build.
